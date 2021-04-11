@@ -1,16 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <h1 data-cy="count">{{ count }}</h1>
+  <div>
+    <button data-cy="increment" @click="increment">increment</button>
+    <button data-cy="decrement" @click="decrement">decremtnt</button>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    const count = ref(0)
+    const increment = () => {
+      count.value++
+    }
+
+    const decrement = () => {
+      count.value--
+    }
+
+    return {
+      count,
+      increment,
+      decrement
+    }
   }
 })
 </script>
